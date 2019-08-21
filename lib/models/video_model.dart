@@ -15,5 +15,5 @@ class VideoModel {
       thumb: json["snippet"]["thumbnails"]["high"]["url"],
       channel: json["snippet"]["channelTitle"]
     );
-  };
+  }
 }
