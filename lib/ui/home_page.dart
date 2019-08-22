@@ -38,12 +38,27 @@ class Home extends StatelessWidget {
         color: Colors.black,
         child: StreamBuilder(
           stream: BlocProvider.getBloc<VideoBloc>().outVideos,
+          initialData: [],
           builder: (context, snapshot) {
             if(snapshot.hasData) {
               return ListView.builder(
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data.length + 1,
                 itemBuilder: (context, index) {
-                  return VideoTile(snapshot.data[index]);
+                  if(index < snapshot.data.length) {
+                    return VideoTile(snapshot.data[index]);
+                  }else if(index > 1){
+                    BlocProvider.getBloc<VideoBloc>().inSearch.add(null);
+                    return Container(
+                      height: 40.0,
+                      width: 40.0,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                      ),
+                    );
+                  }else {
+                    return Container();
+                  }
                 },
               );
             }else {
