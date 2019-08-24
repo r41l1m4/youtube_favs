@@ -18,7 +18,7 @@ class VideoModel {
       );
     }else {
       return VideoModel(
-          id: json["id"],
+          id: json["videoId"],
           title: json["title"],
           thumb: json["thumb"],
           channel: json["channel"]
